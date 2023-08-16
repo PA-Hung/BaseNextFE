@@ -1,13 +1,70 @@
-import Link from 'next/link'
-import React from 'react'
+'use client'
+import React from 'react';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Form, Input } from 'antd';
+import './page.module.css'
+import { useRouter } from 'next/navigation';
 
-const Login = () => {
+const Login: React.FC = () => {
+    const router = useRouter()
+    const onFinish = (values: any) => {
+        console.log('Received values of form: ', values);
+    };
+
+    const handleLogin = () => {
+        router.push('/dashboard')
+    }
+
     return (
-        <div>Login
-            <div><Link href={"/"}>Home</Link></div>
-            <div><Link href={"/dashboard"}>Dashboard</Link></div>
-        </div>
-    )
-}
+        <>
+            <div>
+                <label style={{ fontSize: '25px', fontWeight: 'bold' }}>Login</label>
+            </div>
+            <Form
+                name="normal_login"
+                className="login-form"
+                style={{ width: '350px' }}
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+            >
+                <Form.Item
+                    name="username"
+                    rules={[{ required: true, message: 'Please input your Username!' }]}
+                >
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                </Form.Item>
+                <Form.Item
+                    name="password"
+                    rules={[{ required: true, message: 'Please input your Password!' }]}
+                >
+                    <Input
+                        prefix={<LockOutlined className="site-form-item-icon" />}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </Form.Item>
+                <Form.Item>
+                    <Form.Item name="remember" valuePropName="checked" noStyle>
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
 
-export default Login
+                    <a className="login-form-forgot" href="" style={{ float: 'right' }}>
+                        Forgot password
+                    </a>
+                </Form.Item>
+
+                <Form.Item >
+                    <Button
+                        onClick={() => handleLogin()}
+                        style={{ width: '100%' }}
+                        type="primary" htmlType="submit" className="login-form-button">
+                        Log in
+                    </Button>
+                    Or <a href="">register now!</a>
+                </Form.Item>
+            </Form>
+        </>
+    );
+};
+
+export default Login;

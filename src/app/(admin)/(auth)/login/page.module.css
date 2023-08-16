@@ -1,0 +1,29 @@
+.loginPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(circle, rgb(90, 116, 187) 0%, #042e52 100%);
+}
+
+.svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    border: 1px solid rgba(15, 0, 0, 0.308);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    background: white;
+}
